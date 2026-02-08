@@ -17,13 +17,22 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
 }
  
-/* Landing Container */
-.landing{
-    max-width:400px;
+/* Main Container */
+.container{
+    max-width:420px;
     padding:20px;
+}
+ 
+/* Photo */
+.proposal-photo{
+    width:230px;
+    height:260px;
+    object-fit:cover;
+    border-radius:15px;
+    margin:15px auto;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
 }
  
 /* Ring Box */
@@ -32,7 +41,7 @@ body{
     height:110px;
     background:#b30059;
     border-radius:12px;
-    margin:25px auto;
+    margin:20px auto;
     position:relative;
     cursor:pointer;
 }
@@ -57,23 +66,6 @@ body{
     left:45px;
     opacity:0;
     transition:1s;
-}
- 
-/* Proposal Page */
-.container{
-    display:none;
-    max-width:420px;
-    padding:20px;
-}
- 
-/* Photo */
-.proposal-photo{
-    width:230px;
-    height:260px;
-    object-fit:cover;
-    border-radius:15px;
-    margin:15px auto;
-    box-shadow:0 0 15px rgba(0,0,0,0.4);
 }
  
 /* Buttons */
@@ -121,59 +113,46 @@ button{
  
 <body>
  
-<!-- Landing -->
-<div class="landing" id="landing">
- 
-    <h1>❤️ Hey Vaishu ❤️</h1>
- 
-    <p>
-        Warning ⚠️ <br><br>
-        Opening this may cause:<br>
-        Lifetime Happiness 😄 <br>
-        Unlimited Love 💖 <br>
-        One Slightly Crazy Husband 🤭 <br><br>
-        Tap the box below 💍
-    </p>
- 
-    <div class="box" onclick="openBox()">
-        <div class="lid" id="lid"></div>
-        <div class="ring" id="ring"></div>
-    </div>
- 
-</div>
- 
-<!-- Proposal -->
-<div class="container" id="proposal">
+<div class="container">
  
     <h1>❤️ Vaishu ❤️</h1>
  
     <img src="couple.jpg" class="proposal-photo">
  
-    <h2>Will You Marry Me?</h2>
+    <h2>Tap The Ring First 💍</h2>
  
-    <p>Forever Yours,<br>Aswin 💖</p>
+    <!-- Ring Box -->
+    <div class="box" onclick="openBox()">
+        <div class="lid" id="lid"></div>
+        <div class="ring" id="ring"></div>
+    </div>
  
-    <button id="yesBtn" onclick="celebrate()">Yes 💍</button>
-    <button id="noBtn" onclick="locked()">No 😜</button>
+    <!-- Proposal Text -->
+    <div id="proposalText" style="display:none;">
+        <h2>Will You Marry Me?</h2>
+        <p>Forever Yours,<br>Aswin 💖</p>
+ 
+        <button id="yesBtn" onclick="celebrate()">Yes 💍</button>
+        <button id="noBtn" onclick="locked()">No 😜</button>
+    </div>
  
 </div>
  
 <script>
  
-/* Open Box */
+/* Open Ring Box */
 function openBox(){
  
     document.getElementById("lid").style.transform="rotateX(130deg)";
     document.getElementById("ring").style.opacity="1";
  
     setTimeout(()=>{
-        document.getElementById("landing").style.display="none";
-        document.getElementById("proposal").style.display="block";
+        document.getElementById("proposalText").style.display="block";
         startPetals();
     },1500);
 }
  
-/* Petals */
+/* Petals Animation */
 function startPetals(){
     setInterval(()=>{
         let p=document.createElement("div");
@@ -184,7 +163,7 @@ function startPetals(){
     },300);
 }
  
-/* YES Fireworks */
+/* YES Celebration */
 function celebrate(){
  
     document.body.innerHTML=
@@ -197,6 +176,7 @@ function celebrate(){
         fire.style.left=Math.random()*100+"vw";
         fire.style.top=Math.random()*100+"vh";
         document.body.appendChild(fire);
+ 
         setTimeout(()=>fire.remove(),1500);
     },200);
 }
