@@ -12,14 +12,14 @@ body{
     font-family:'Segoe UI',sans-serif;
     background: linear-gradient(to right,#ff758c,#ff7eb3);
     color:white;
-    text-align:center;
-    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
+    min-height:100vh;
+    text-align:center;
 }
  
-/* Main Container */
+/* Container */
 .container{
     max-width:420px;
     padding:20px;
@@ -39,33 +39,44 @@ body{
 .box{
     width:160px;
     height:110px;
-    background:#b30059;
-    border-radius:12px;
-    margin:20px auto;
+    margin:25px auto;
     position:relative;
     cursor:pointer;
 }
  
+/* Bottom Box */
+.base{
+    width:160px;
+    height:70px;
+    background:#b30059;
+    border-radius:0 0 12px 12px;
+    position:absolute;
+    bottom:0;
+}
+ 
+/* Lid */
 .lid{
     width:160px;
-    height:55px;
+    height:50px;
     background:#ff1a75;
     border-radius:12px 12px 0 0;
     position:absolute;
+    top:0;
     transform-origin:bottom;
     transition:1s;
 }
  
+/* Ring */
 .ring{
-    width:70px;
-    height:70px;
+    width:60px;
+    height:60px;
     border:6px solid gold;
     border-radius:50%;
     position:absolute;
-    top:30px;
-    left:45px;
-    opacity:0;
-    transition:1s;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%) scale(0);
+    transition:0.8s;
 }
  
 /* Buttons */
@@ -119,15 +130,20 @@ button{
  
     <img src="couple.jpg" class="proposal-photo">
  
-    <h2>Tap The Ring First 💍</h2>
+    <h2>Tap The Ring Box 💍</h2>
  
     <!-- Ring Box -->
     <div class="box" onclick="openBox()">
+ 
         <div class="lid" id="lid"></div>
+ 
+        <div class="base"></div>
+ 
         <div class="ring" id="ring"></div>
+ 
     </div>
  
-    <!-- Proposal Text -->
+    <!-- Proposal -->
     <div id="proposalText" style="display:none;">
         <h2>Will You Marry Me?</h2>
         <p>Forever Yours,<br>Aswin 💖</p>
@@ -140,19 +156,19 @@ button{
  
 <script>
  
-/* Open Ring Box */
+/* Open Box Animation */
 function openBox(){
  
-    document.getElementById("lid").style.transform="rotateX(130deg)";
-    document.getElementById("ring").style.opacity="1";
+    document.getElementById("lid").style.transform="rotateX(120deg)";
+    document.getElementById("ring").style.transform="translateX(-50%) scale(1)";
  
     setTimeout(()=>{
         document.getElementById("proposalText").style.display="block";
         startPetals();
-    },1500);
+    },900);
 }
  
-/* Petals Animation */
+/* Petals */
 function startPetals(){
     setInterval(()=>{
         let p=document.createElement("div");
