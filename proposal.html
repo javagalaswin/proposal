@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaishu ❤️ Aswin</title>
+ 
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right,#ff758c,#ff7eb3);
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
+ 
+/* Ring Box */
+.box{
+    width:160px;
+    height:110px;
+    background:#b30059;
+    border-radius:12px;
+    margin:auto;
+    margin-top:35vh;
+    position:relative;
+    cursor:pointer;
+}
+ 
+.lid{
+    width:160px;
+    height:55px;
+    background:#ff1a75;
+    border-radius:12px 12px 0 0;
+    position:absolute;
+    transform-origin:bottom;
+    transition:1s;
+}
+ 
+.ring{
+    width:70px;
+    height:70px;
+    border:6px solid gold;
+    border-radius:50%;
+    position:absolute;
+    top:30px;
+    left:45px;
+    opacity:0;
+    transition:1s;
+}
+ 
+/* Proposal */
+.container{ display:none; }
+ 
+button{
+    padding:14px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:40px;
+    margin:10px;
+    cursor:pointer;
+}
+ 
+#yesBtn{ background:#ff2e63; color:white; }
+#noBtn{ background:white; color:#ff2e63; }
+ 
+/* Rose Petals */
+.petal{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:red;
+    border-radius:50% 0 50% 0;
+    animation:fall 6s linear infinite;
+}
+ 
+@keyframes fall{
+    0%{ transform:translateY(-10vh) rotate(0); opacity:1;}
+    100%{ transform:translateY(110vh) rotate(360deg); opacity:0;}
+}
+ 
+</style>
+</head>
+ 
+<body>
+ 
+<!-- Ring Box -->
+<div class="box" onclick="openBox()">
+    <div class="lid" id="lid"></div>
+    <div class="ring" id="ring"></div>
+</div>
+ 
+<!-- Proposal -->
+<div class="container" id="proposal">
+    <h1>❤️ Vaishu ❤️</h1>
+    <h2>Will You Marry Me?</h2>
+    <p>Forever Yours,<br>Aswin 💖</p>
+ 
+    <button id="yesBtn" onclick="celebrate()">Yes 💍</button>
+    <button id="noBtn" onclick="locked()">No 😜</button>
+</div>
+ 
+<script>
+ 
+/* Open Ring Box */
+function openBox(){
+    document.getElementById("lid").style.transform="rotateX(130deg)";
+    document.getElementById("ring").style.opacity="1";
+ 
+    setTimeout(()=>{
+        document.querySelector(".box").style.display="none";
+        document.getElementById("proposal").style.display="block";
+        startPetals();
+    },1500);
+}
+ 
+/* Rose Petals Animation */
+function startPetals(){
+    setInterval(()=>{
+        let p=document.createElement("div");
+        p.classList.add("petal");
+        p.style.left=Math.random()*100+"vw";
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),6000);
+    },300);
+}
+ 
+/* YES Celebration */
+function celebrate(){
+    document.body.innerHTML="<h1>💖 Vaishu Said YES 💖<br>🎉 Forever Together 🎉</h1>";
+ 
+    setInterval(()=>{
+        let heart=document.createElement("div");
+        heart.innerHTML="💖";
+        heart.style.position="absolute";
+        heart.style.fontSize="30px";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.top=Math.random()*100+"vh";
+        document.body.appendChild(heart);
+ 
+        setTimeout(()=>heart.remove(),2000);
+    },200);
+}
+ 
+/* NO Locked Message */
+function locked(){
+    alert("🔒 Vaishu, you are already locked in Aswin's heart ❤️\nOnly YES is allowed 😄");
+}
+ 
+</script>
+ 
+</body>
+</html>
