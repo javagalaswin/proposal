@@ -6,28 +6,20 @@
 <title>Vaishu ❤️ Aswin</title>
  
 <style>
- 
 body{
     margin:0;
     font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right,#ff758c,#ff7eb3);
     overflow:hidden;
     color:white;
     text-align:center;
- 
-    /* Background Photo */
-    background: url("bg.jpg") no-repeat center center/cover;
 }
  
-/* Dark overlay for readability */
-body::before{
-    content:"";
+/* Landing */
+.landing{
     position:absolute;
-    top:0;
-    left:0;
+    top:30%;
     width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.4);
-    z-index:-1;
 }
  
 /* Ring Box */
@@ -36,10 +28,9 @@ body::before{
     height:110px;
     background:#b30059;
     border-radius:12px;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    margin:auto;
+    margin-top:20px;
+    position:relative;
     cursor:pointer;
 }
  
@@ -65,9 +56,20 @@ body::before{
     transition:1s;
 }
  
-/* Proposal */
+/* Proposal Page */
 .container{ display:none; }
  
+/* Photo Style */
+.proposal-photo{
+    width:220px;
+    height:260px;
+    object-fit:cover;
+    border-radius:15px;
+    margin:15px auto;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+ 
+/* Buttons */
 button{
     padding:14px 35px;
     font-size:18px;
@@ -95,20 +97,48 @@ button{
     100%{ transform:translateY(110vh) rotate(360deg); opacity:0;}
 }
  
+/* Fireworks */
+.firework{
+    position:absolute;
+    font-size:30px;
+    animation:explode 1.5s linear infinite;
+}
+ 
+@keyframes explode{
+    0%{ transform:scale(0); opacity:1;}
+    100%{ transform:scale(2); opacity:0;}
+}
+ 
 </style>
 </head>
  
 <body>
  
-<!-- Ring Box -->
-<div class="box" onclick="openBox()">
-    <div class="lid" id="lid"></div>
-    <div class="ring" id="ring"></div>
+<!-- Landing Page -->
+<div class="landing" id="landing">
+    <h1>❤️ Hey Vaishu ❤️</h1>
+    <p>
+        Warning ⚠️<br><br>
+        You are about to open something that may cause:<br>
+        • Lifetime Happiness 😄<br>
+        • Unlimited Love 💖<br>
+        • One Crazy Husband 🤭<br><br>
+        Click the box carefully... 💍
+    </p>
+ 
+    <div class="box" onclick="openBox()">
+        <div class="lid" id="lid"></div>
+        <div class="ring" id="ring"></div>
+    </div>
 </div>
  
-<!-- Proposal -->
+<!-- Proposal Page -->
 <div class="container" id="proposal">
     <h1>❤️ Vaishu ❤️</h1>
+ 
+    <!-- Photo -->
+    <img src="couple.jpg" class="proposal-photo">
+ 
     <h2>Will You Marry Me?</h2>
     <p>Forever Yours,<br>Aswin 💖</p>
  
@@ -124,13 +154,13 @@ function openBox(){
     document.getElementById("ring").style.opacity="1";
  
     setTimeout(()=>{
-        document.querySelector(".box").style.display="none";
+        document.getElementById("landing").style.display="none";
         document.getElementById("proposal").style.display="block";
         startPetals();
     },1500);
 }
  
-/* Rose Petals Animation */
+/* Rose Petals */
 function startPetals(){
     setInterval(()=>{
         let p=document.createElement("div");
@@ -146,21 +176,20 @@ function celebrate(){
     document.body.innerHTML="<h1>💖 Vaishu Said YES 💖<br>🎉 Forever Together 🎉</h1>";
  
     setInterval(()=>{
-        let heart=document.createElement("div");
-        heart.innerHTML="💖";
-        heart.style.position="absolute";
-        heart.style.fontSize="30px";
-        heart.style.left=Math.random()*100+"vw";
-        heart.style.top=Math.random()*100+"vh";
-        document.body.appendChild(heart);
+        let fire=document.createElement("div");
+        fire.classList.add("firework");
+        fire.innerHTML="🎆";
+        fire.style.left=Math.random()*100+"vw";
+        fire.style.top=Math.random()*100+"vh";
+        document.body.appendChild(fire);
  
-        setTimeout(()=>heart.remove(),2000);
+        setTimeout(()=>fire.remove(),1500);
     },200);
 }
  
-/* NO Locked Message */
+/* NO Message */
 function locked(){
-    alert("🔒 Vaishu, you are already locked in Aswin's heart ❤️\nOnly YES is allowed 😄");
+    alert("🔒 Vaishu, nice try 😄\nBut you are already locked in Aswin's heart ❤️\nOnly YES works here 💍");
 }
  
 </script>
