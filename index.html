@@ -6,20 +6,24 @@
 <title>Vaishu ❤️ Aswin</title>
  
 <style>
+ 
 body{
     margin:0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family:'Segoe UI',sans-serif;
     background: linear-gradient(to right,#ff758c,#ff7eb3);
-    overflow:hidden;
     color:white;
     text-align:center;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
  
-/* Landing */
+/* Landing Container */
 .landing{
-    position:absolute;
-    top:30%;
-    width:100%;
+    max-width:400px;
+    padding:20px;
 }
  
 /* Ring Box */
@@ -28,8 +32,7 @@ body{
     height:110px;
     background:#b30059;
     border-radius:12px;
-    margin:auto;
-    margin-top:20px;
+    margin:25px auto;
     position:relative;
     cursor:pointer;
 }
@@ -57,11 +60,15 @@ body{
 }
  
 /* Proposal Page */
-.container{ display:none; }
+.container{
+    display:none;
+    max-width:420px;
+    padding:20px;
+}
  
-/* Photo Style */
+/* Photo */
 .proposal-photo{
-    width:220px;
+    width:230px;
     height:260px;
     object-fit:cover;
     border-radius:15px;
@@ -82,9 +89,9 @@ button{
 #yesBtn{ background:#ff2e63; color:white; }
 #noBtn{ background:white; color:#ff2e63; }
  
-/* Rose Petals */
+/* Petals */
 .petal{
-    position:absolute;
+    position:fixed;
     width:18px;
     height:18px;
     background:red;
@@ -99,7 +106,7 @@ button{
  
 /* Fireworks */
 .firework{
-    position:absolute;
+    position:fixed;
     font-size:30px;
     animation:explode 1.5s linear infinite;
 }
@@ -114,42 +121,48 @@ button{
  
 <body>
  
-<!-- Landing Page -->
+<!-- Landing -->
 <div class="landing" id="landing">
+ 
     <h1>❤️ Hey Vaishu ❤️</h1>
+ 
     <p>
-        Warning ⚠️<br><br>
-        You are about to open something that may cause:<br>
-        • Lifetime Happiness 😄<br>
-        • Unlimited Love 💖<br>
-        • One Crazy Husband 🤭<br><br>
-        Click the box carefully... 💍
+        Warning ⚠️ <br><br>
+        Opening this may cause:<br>
+        Lifetime Happiness 😄 <br>
+        Unlimited Love 💖 <br>
+        One Slightly Crazy Husband 🤭 <br><br>
+        Tap the box below 💍
     </p>
  
     <div class="box" onclick="openBox()">
         <div class="lid" id="lid"></div>
         <div class="ring" id="ring"></div>
     </div>
+ 
 </div>
  
-<!-- Proposal Page -->
+<!-- Proposal -->
 <div class="container" id="proposal">
+ 
     <h1>❤️ Vaishu ❤️</h1>
  
-    <!-- Photo -->
     <img src="couple.jpg" class="proposal-photo">
  
     <h2>Will You Marry Me?</h2>
+ 
     <p>Forever Yours,<br>Aswin 💖</p>
  
     <button id="yesBtn" onclick="celebrate()">Yes 💍</button>
     <button id="noBtn" onclick="locked()">No 😜</button>
+ 
 </div>
  
 <script>
  
-/* Open Ring Box */
+/* Open Box */
 function openBox(){
+ 
     document.getElementById("lid").style.transform="rotateX(130deg)";
     document.getElementById("ring").style.opacity="1";
  
@@ -160,7 +173,7 @@ function openBox(){
     },1500);
 }
  
-/* Rose Petals */
+/* Petals */
 function startPetals(){
     setInterval(()=>{
         let p=document.createElement("div");
@@ -171,9 +184,11 @@ function startPetals(){
     },300);
 }
  
-/* YES Celebration */
+/* YES Fireworks */
 function celebrate(){
-    document.body.innerHTML="<h1>💖 Vaishu Said YES 💖<br>🎉 Forever Together 🎉</h1>";
+ 
+    document.body.innerHTML=
+    "<h1>💖 Vaishu Said YES 💖<br>🎉 Forever Together 🎉</h1>";
  
     setInterval(()=>{
         let fire=document.createElement("div");
@@ -182,14 +197,13 @@ function celebrate(){
         fire.style.left=Math.random()*100+"vw";
         fire.style.top=Math.random()*100+"vh";
         document.body.appendChild(fire);
- 
         setTimeout(()=>fire.remove(),1500);
     },200);
 }
  
 /* NO Message */
 function locked(){
-    alert("🔒 Vaishu, nice try 😄\nBut you are already locked in Aswin's heart ❤️\nOnly YES works here 💍");
+    alert("🔒 Nice try Vaishu 😄\nBut you are already locked in Aswin's heart ❤️");
 }
  
 </script>
